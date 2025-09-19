@@ -100,21 +100,155 @@
       }
     }
 
-    function shareProduct(product) {
+    // Convert image URL to blob for sharing
+    async function imageUrlToBlob(imageUrl) {
+      try {
+        // Handle relative URLs
+        const absoluteUrl = new URL(imageUrl, window.location.origin).href;
+        const response = await fetch(absoluteUrl);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const blob = await response.blob();
+        return blob;
+      } catch (error) {
+        console.error('Error converting image to blob:', error);
+        return null;
+      }
+    }
+
+    // Create a File object from blob for sharing
+    function createImageFile(blob, filename) {
+      return new File([blob], filename, { type: blob.type });
+    }
+
+    // Generate product image filename
+    function generateImageFilename(product) {
+      const safeName = product.name.replace(/[^\w\s-]/g, '').replace(/\s+/g, '_');
+      return `AquaTech_Pro_${safeName}_${product.id}.jpg`;
+    }
+
+    // Create branded share image using Canvas
+    async function createBrandedShareImage(product) {
+      return new Promise((resolve) => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        // Set canvas size
+        canvas.width = 800;
+        canvas.height = 800;
+        
+        // Background
+        ctx.fillStyle = '#0f172a';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Load product image
+        const productImg = new Image();
+        productImg.crossOrigin = 'anonymous';
+        productImg.onload = function() {
+          // Draw product image (centered, maintaining aspect ratio)
+          const maxSize = 400;
+          const ratio = Math.min(maxSize / productImg.width, maxSize / productImg.height);
+          const width = productImg.width * ratio;
+          const height = productImg.height * ratio;
+          const x = (canvas.width - width) / 2;
+          const y = 50;
+          
+          ctx.drawImage(productImg, x, y, width, height);
+          
+          // Add overlay for text readability
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.7)';
+          ctx.fillRect(0, y + height - 100, canvas.width, 100);
+          
+          // Product name
+          ctx.fillStyle = '#ffffff';
+          ctx.font = 'bold 28px Arial';
+          ctx.textAlign = 'center';
+          ctx.fillText(product.name.substring(0, 30), canvas.width / 2, y + height - 60);
+          
+          // Price
+          ctx.fillStyle = '#22c55e';
+          ctx.font = 'bold 32px Arial';
+          ctx.fillText(fmt(product.price), canvas.width / 2, y + height - 20);
+          
+          // Brand name
+          ctx.fillStyle = '#22c55e';
+          ctx.font = 'bold 36px Arial';
+          ctx.fillText('AquaTech Pro', canvas.width / 2, y + height + 80);
+          
+          // Subtitle
+          ctx.fillStyle = '#e5e7eb';
+          ctx.font = '20px Arial';
+          ctx.fillText('سباكة احترافية - توصيل سريع', canvas.width / 2, y + height + 110);
+          
+          // WhatsApp number
+          ctx.fillStyle = '#25d366';
+          ctx.font = 'bold 24px Arial';
+          ctx.fillText('📱 01557609572', canvas.width / 2, y + height + 150);
+          
+          // Website
+          ctx.fillStyle = '#6b7280';
+          ctx.font = '18px Arial';
+          ctx.fillText('للطلب عبر الواتساب أو زيارة موقعنا', canvas.width / 2, y + height + 180);
+          
+          // Convert to blob
+          canvas.toBlob((blob) => {
+            resolve(blob);
+          }, 'image/jpeg', 0.9);
+        };
+        
+        productImg.onerror = () => {
+          console.error('Failed to load product image for branded share');
+          resolve(null);
+        };
+        
+        // Try to load the image
+        const absoluteUrl = new URL(product.img, window.location.origin).href;
+        productImg.src = absoluteUrl;
+      });
+    }
+
+    async function shareProduct(product) {
       const shareUrl = generateProductShareUrl(product.id);
       const shareText = `تحقق من هذا المنتج الرائع: ${product.name}\nالسعر: ${fmt(product.price)}\nمن متجر AquaTech Pro للسباكة\n${shareUrl}`;
 
-      // Check if Web Share API is supported
-      if (navigator.share) {
-        navigator.share({
-          title: `${product.name} - AquaTech Pro`,
-          text: `تحقق من هذا المنتج: ${product.name} - السعر: ${fmt(product.price)}`,
-          url: shareUrl
-        }).catch(console.error);
-      } else {
-        // Show sharing options modal
-        showSharingModal(product, shareUrl, shareText);
+      // Check if Web Share API is supported and try to share with image
+      if (navigator.share && navigator.canShare) {
+        try {
+          // Try to get the image as blob
+          const imageBlob = await imageUrlToBlob(product.img);
+          
+          if (imageBlob) {
+            const imageFile = createImageFile(imageBlob, generateImageFilename(product));
+            
+            // Check if we can share files
+            const shareData = {
+              title: `${product.name} - AquaTech Pro`,
+              text: shareText,
+              files: [imageFile]
+            };
+            
+            if (navigator.canShare(shareData)) {
+              await navigator.share(shareData);
+              return;
+            }
+          }
+          
+          // Fallback to text-only sharing if image sharing fails
+          await navigator.share({
+            title: `${product.name} - AquaTech Pro`,
+            text: shareText,
+            url: shareUrl
+          });
+          return;
+        } catch (error) {
+          console.error('Web Share API failed:', error);
+          // Continue to fallback options
+        }
       }
+
+      // Show sharing options modal if Web Share API is not available or failed
+      showSharingModal(product, shareUrl, shareText);
     }
 
     function showSharingModal(product, shareUrl, shareText) {
@@ -158,10 +292,34 @@
                 <span>📋</span>
                 <span>نسخ الرابط</span>
               </button>
+              <button class="share-btn download-image" onclick="downloadProductImage('${product.img}', '${generateImageFilename(product)}')">
+                <span>💾</span>
+                <span>تحميل الصورة</span>
+              </button>
+              <button class="share-btn copy-text-image" onclick="copyProductTextWithImage('${shareText}', '${product.img}', this)">
+                <span>📝📷</span>
+                <span>نسخ النص والصورة</span>
+              </button>
+              <button class="share-btn create-branded" onclick="createAndDownloadBrandedImage('${product.id}', this)">
+                <span>🎨</span>
+                <span>إنشاء صورة مخصصة</span>
+              </button>
             </div>
             <div class="share-url-display">
               <label>رابط المنتج:</label>
               <input type="text" value="${shareUrl}" readonly onclick="this.select()">
+            </div>
+            <div class="share-instructions">
+              <h4>💡 نصائح للمشاركة:</h4>
+              <ul>
+                <li><strong>📱 واتساب:</strong> مشاركة مباشرة مع النص والرابط</li>
+                <li><strong>💾 تحميل الصورة:</strong> احفظ الصورة الأصلية ثم شاركها مع النص</li>
+                <li><strong>📝📷 نسخ النص والصورة:</strong> ينسخ النص ويفتح الصورة للحفظ</li>
+                <li><strong>🎨 إنشاء صورة مخصصة:</strong> صورة احترافية تحتوي على المنتج والعلامة التجارية</li>
+              </ul>
+              <div class="share-tip">
+                <strong>🌟 نصيحة:</strong> استخدم الصورة المخصصة للحصول على أفضل تأثير في المشاركة!
+              </div>
             </div>
           </div>
         </div>
@@ -173,7 +331,9 @@
 
     // Global functions for sharing (needed for onclick handlers)
     window.shareToWhatsApp = function(text) {
-      window.open(`https://wa.me/?text=${text}`, '_blank');
+      // Enhanced WhatsApp sharing with better formatting
+      const enhancedText = `🔥 *عرض خاص من AquaTech Pro* 🔥\n\n${text}\n\n💡 *نصيحة:* احفظ صورة المنتج من الرابط أعلاه وشاركها مع هذا النص للحصول على أفضل تأثير!\n\n📞 للطلب: 01557609572`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(enhancedText)}`, '_blank');
     };
 
     window.shareToFacebook = function(url) {
@@ -181,7 +341,9 @@
     };
 
     window.shareToTwitter = function(text) {
-      window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+      const hashtags = 'AquaTechPro,سباكة,مصر,أدوات_سباكة';
+      const tweetText = `${text}\n\n#${hashtags.replace(/,/g, ' #')}`;
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`, '_blank');
     };
 
     window.copyProductLink = async function(url, button) {
@@ -195,6 +357,96 @@
         showShareNotification('تم نسخ رابط المنتج بنجاح! 📋✅');
       } else {
         showShareNotification('فشل في نسخ الرابط. يرجى المحاولة مرة أخرى.', 'error');
+      }
+    };
+
+    // Download product image
+    window.downloadProductImage = async function(imageUrl, filename) {
+      try {
+        const blob = await imageUrlToBlob(imageUrl);
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          showShareNotification('تم تحميل الصورة بنجاح! 💾✅');
+        } else {
+          throw new Error('Failed to download image');
+        }
+      } catch (error) {
+        console.error('Error downloading image:', error);
+        showShareNotification('فشل في تحميل الصورة. يرجى المحاولة مرة أخرى.', 'error');
+      }
+    };
+
+    // Copy product text and open image for download
+    window.copyProductTextWithImage = async function(text, imageUrl, button) {
+      try {
+        // Copy text to clipboard
+        const textSuccess = await copyToClipboard(text);
+        
+        if (textSuccess) {
+          // Open image in new tab for user to save
+          const absoluteUrl = new URL(imageUrl, window.location.origin).href;
+          window.open(absoluteUrl, '_blank');
+          
+          const originalText = button.innerHTML;
+          button.innerHTML = '<span>✅</span><span>تم النسخ</span>';
+          setTimeout(() => {
+            button.innerHTML = originalText;
+          }, 2000);
+          
+          showShareNotification('تم نسخ النص وفتح الصورة! انقر بزر الماوس الأيمن على الصورة لحفظها 📝📷✅');
+        } else {
+          throw new Error('Failed to copy text');
+        }
+      } catch (error) {
+        console.error('Error copying text with image:', error);
+        showShareNotification('فشل في نسخ النص. يرجى المحاولة مرة أخرى.', 'error');
+      }
+    };
+
+    // Create and download branded share image
+    window.createAndDownloadBrandedImage = async function(productId, button) {
+      try {
+        const originalText = button.innerHTML;
+        button.innerHTML = '<span>⏳</span><span>جاري الإنشاء...</span>';
+        button.disabled = true;
+        
+        const product = PRODUCTS.find(p => p.id === productId);
+        if (!product) {
+          throw new Error('Product not found');
+        }
+        
+        const brandedBlob = await createBrandedShareImage(product);
+        if (brandedBlob) {
+          const url = URL.createObjectURL(brandedBlob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = `AquaTech_Pro_Share_${generateImageFilename(product)}`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+          
+          button.innerHTML = '<span>✅</span><span>تم الإنشاء</span>';
+          showShareNotification('تم إنشاء وتحميل الصورة المخصصة بنجاح! 🎨✅');
+        } else {
+          throw new Error('Failed to create branded image');
+        }
+      } catch (error) {
+        console.error('Error creating branded image:', error);
+        button.innerHTML = '<span>❌</span><span>فشل</span>';
+        showShareNotification('فشل في إنشاء الصورة المخصصة. يرجى المحاولة مرة أخرى.', 'error');
+      } finally {
+        button.disabled = false;
+        setTimeout(() => {
+          button.innerHTML = '<span>🎨</span><span>إنشاء صورة مخصصة</span>';
+        }, 3000);
       }
     };
 
