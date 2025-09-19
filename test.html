@@ -1,141 +1,0 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اختبار نظام الشروط والأحكام</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
-            padding: 20px;
-            direction: rtl;
-        }
-        .test-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        .test-title {
-            background: #22c55e;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .test-section {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-        }
-        .test-result {
-            padding: 10px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
-        }
-        .info {
-            background: #d1ecf1;
-            color: #0c5460;
-            border: 1px solid #bee5eb;
-        }
-        .warning {
-            background: #fff3cd;
-            color: #856404;
-            border: 1px solid #ffeaa7;
-        }
-    </style>
-</head>
-<body>
-    <div class="test-container">
-        <div class="test-title">
-            <h2>✅ اختبار نظام الشروط والأحكام - AquaTech Pro</h2>
-        </div>
-
-        <div class="test-section">
-            <h3>🔍 التحسينات المطبقة:</h3>
-            <div class="test-result success">
-                <strong>✅ تم تحسين رسالة الخطأ:</strong><br>
-                تم تغيير رسالة الخطأ من "يجب الموافقة على الشروط والأحكام قبل إتمام الطلب" إلى رسالة أكثر وضوحاً ومع رمز تحذيري ⚠️
-            </div>
-            <div class="test-result success">
-                <strong>✅ تم إضافة تأثيرات بصرية:</strong><br>
-                تم إضافة كلاسات CSS للتنبيه البصري مع الرسوم المتحركة (shake و pulse-red) عند عدم تحديد الشروط
-            </div>
-            <div class="test-result success">
-                <strong>✅ تم تحسين منع الإرسال:</strong><br>
-                تم إضافة فحص إضافي في دالة openWhatsapp لمنع الإرسال نهائياً دون الموافقة على الشروط
-            </div>
-            <div class="test-result success">
-                <strong>✅ تم تحسين تجربة المستخدم:</strong><br>
-                إضافة تفاعل فوري لإزالة رسائل الخطأ عند تحديد checkbox الشروط
-            </div>
-        </div>
-
-        <div class="test-section">
-            <h3>🧪 سيناريوهات الاختبار:</h3>
-            <div class="test-result info">
-                <strong>سيناريو 1:</strong> محاولة إرسال طلب بدون تحديد الشروط
-                <br><strong>النتيجة المتوقعة:</strong> عرض رسالة خطأ واضحة مع تأثيرات بصرية، ومنع الإرسال
-            </div>
-            <div class="test-result info">
-                <strong>سيناريو 2:</strong> تحديد الشروط ثم إلغاؤها
-                <br><strong>النتيجة المتوقعة:</strong> إزالة التأثيرات البصرية عند التحديد، وظهورها مرة أخرى عند المحاولة
-            </div>
-            <div class="test-result info">
-                <strong>سيناريو 3:</strong> إرسال طلب مع تحديد الشروط
-                <br><strong>النتيجة المتوقعة:</strong> فتح الواتساب بنجاح وإرسال الطلب
-            </div>
-        </div>
-
-        <div class="test-section">
-            <h3>📋 التعديلات التقنية المطبقة:</h3>
-            <div class="test-result warning">
-                <strong>📄 script-updated.js:</strong>
-                <ul>
-                    <li>تحسين رسالة الخطأ في دالة validateForm</li>
-                    <li>إضافة تأثيرات بصرية في event listener للزر</li>
-                    <li>إضافة فحص إضافي في دالة openWhatsapp</li>
-                    <li>إضافة event listener لخانة الشروط لإزالة الأخطاء فوراً</li>
-                </ul>
-            </div>
-            <div class="test-result warning">
-                <strong>📄 style.css:</strong>
-                <ul>
-                    <li>إضافة كلاسات .terms-agreement.error و .terms-checkbox.error</li>
-                    <li>إضافة رسوم متحركة shake و pulse-red</li>
-                    <li>تحسين التأثيرات البصرية للتنبيه</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="test-section">
-            <h3>🎯 النتيجة النهائية:</h3>
-            <div class="test-result success">
-                <strong>تم حل المشكلة بنجاح!</strong><br>
-                الآن عندما يحاول المستخدم إرسال طلب بدون الموافقة على الشروط:
-                <ul>
-                    <li>سيرى رسالة خطأ واضحة ومفصلة</li>
-                    <li>ستظهر تأثيرات بصرية لافتة للنظر</li>
-                    <li>سيتم منع الإرسال نهائياً</li>
-                    <li>سيحدث تمرير تلقائي إلى خانة الشروط</li>
-                    <li>ستختفي التأثيرات فور تحديد الشروط</li>
-                </ul>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 20px; padding: 15px; background: #e8f5e8; border-radius: 8px;">
-            <strong>🚀 المتجر جاهز للاستخدام مع نظام حماية محسن للشروط والأحكام!</strong>
-        </div>
-    </div>
-</body>
-</html>
