@@ -54,6 +54,178 @@
     // ======= HELPERS =======
     const fmt = (n) => new Intl.NumberFormat(undefined, { style: 'currency', currency: CURRENCY, maximumFractionDigits: 2 }).format(n);
 
+    // ======= URL PARAMETER HANDLING =======
+    function getUrlParams() {
+      const urlParams = new URLSearchParams(window.location.search);
+      return {
+        productId: urlParams.get('product'),
+        shared: urlParams.get('shared') === 'true'
+      };
+    }
+
+    function generateProductShareUrl(productId) {
+      const baseUrl = window.location.origin + window.location.pathname;
+      return `${baseUrl}?product=${productId}&shared=true`;
+    }
+
+    function updateUrlWithProduct(productId) {
+      const newUrl = generateProductShareUrl(productId);
+      window.history.pushState({ productId }, '', newUrl);
+    }
+
+    function clearUrlParams() {
+      const baseUrl = window.location.origin + window.location.pathname;
+      window.history.pushState({}, '', baseUrl);
+    }
+
+    // ======= PRODUCT SHARING FUNCTIONS =======
+    async function copyToClipboard(text) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err) {
+        // Fallback for older browsers
+        try {
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          document.body.appendChild(textArea);
+          textArea.select();
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textArea);
+          return successful;
+        } catch (fallbackErr) {
+          console.error('Failed to copy text to clipboard:', fallbackErr);
+          return false;
+        }
+      }
+    }
+
+    function shareProduct(product) {
+      const shareUrl = generateProductShareUrl(product.id);
+      const shareText = `تحقق من هذا المنتج الرائع: ${product.name}\nالسعر: ${fmt(product.price)}\nمن متجر AquaTech Pro للسباكة\n${shareUrl}`;
+
+      // Check if Web Share API is supported
+      if (navigator.share) {
+        navigator.share({
+          title: `${product.name} - AquaTech Pro`,
+          text: `تحقق من هذا المنتج: ${product.name} - السعر: ${fmt(product.price)}`,
+          url: shareUrl
+        }).catch(console.error);
+      } else {
+        // Show sharing options modal
+        showSharingModal(product, shareUrl, shareText);
+      }
+    }
+
+    function showSharingModal(product, shareUrl, shareText) {
+      // Remove any existing sharing modal
+      const existing = document.querySelector('.sharing-modal');
+      if (existing) {
+        existing.remove();
+      }
+
+      // Create sharing modal
+      const modal = document.createElement('div');
+      modal.className = 'modal-overlay sharing-modal';
+      modal.innerHTML = `
+        <div class="modal sharing-options-modal">
+          <div class="modal-header">
+            <h3>📤 مشاركة المنتج</h3>
+            <button class="modal-close" onclick="this.closest('.sharing-modal').remove()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="product-share-preview">
+              <img src="${product.img}" alt="${product.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px;">
+              <div>
+                <h4>${product.name}</h4>
+                <div class="share-price">${fmt(product.price)}</div>
+              </div>
+            </div>
+            <div class="share-options">
+              <button class="share-btn whatsapp" onclick="shareToWhatsApp('${encodeURIComponent(shareText)}')">
+                <span>📱</span>
+                <span>واتساب</span>
+              </button>
+              <button class="share-btn facebook" onclick="shareToFacebook('${encodeURIComponent(shareUrl)}')">
+                <span>📘</span>
+                <span>فيسبوك</span>
+              </button>
+              <button class="share-btn twitter" onclick="shareToTwitter('${encodeURIComponent(shareText)}')">
+                <span>🐦</span>
+                <span>تويتر</span>
+              </button>
+              <button class="share-btn copy" onclick="copyProductLink('${shareUrl}', this)">
+                <span>📋</span>
+                <span>نسخ الرابط</span>
+              </button>
+            </div>
+            <div class="share-url-display">
+              <label>رابط المنتج:</label>
+              <input type="text" value="${shareUrl}" readonly onclick="this.select()">
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+      modal.style.display = 'flex';
+    }
+
+    // Global functions for sharing (needed for onclick handlers)
+    window.shareToWhatsApp = function(text) {
+      window.open(`https://wa.me/?text=${text}`, '_blank');
+    };
+
+    window.shareToFacebook = function(url) {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+    };
+
+    window.shareToTwitter = function(text) {
+      window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+    };
+
+    window.copyProductLink = async function(url, button) {
+      const success = await copyToClipboard(url);
+      if (success) {
+        const originalText = button.innerHTML;
+        button.innerHTML = '<span>✅</span><span>تم النسخ</span>';
+        setTimeout(() => {
+          button.innerHTML = originalText;
+        }, 2000);
+        showShareNotification('تم نسخ رابط المنتج بنجاح! 📋✅');
+      } else {
+        showShareNotification('فشل في نسخ الرابط. يرجى المحاولة مرة أخرى.', 'error');
+      }
+    };
+
+    function showShareNotification(message, type = 'success') {
+      // Remove any existing notification
+      const existing = document.querySelector('.share-notification');
+      if (existing) {
+        existing.remove();
+      }
+
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = `share-notification ${type}`;
+      notification.innerHTML = `
+        <div class="notification-content">
+          <span>${message}</span>
+          <button class="notification-close" onclick="this.parentElement.parentElement.remove()">&times;</button>
+        </div>
+      `;
+
+      // Add to page
+      document.body.appendChild(notification);
+
+      // Auto-remove after 4 seconds
+      setTimeout(() => {
+        if (notification.parentElement) {
+          notification.remove();
+        }
+      }, 4000);
+    }
+
     function saveCart() {
       try {
         const cartData = [];
@@ -173,7 +345,8 @@
                 <input type="number" min="1" value="1" inputmode="numeric" />
                 <button type="button" aria-label="زيادة">+</button>
               </div>
-              <button class="btn preview" data-id="${p.id}">👁️</button>
+              <button class="btn preview" data-id="${p.id}" title="معاينة المنتج">👁️</button>
+              <button class="btn share" data-id="${p.id}" title="مشاركة المنتج">📤</button>
               <button class="btn add" data-id="${p.id}">أضف للسلة</button>
             </div>
           </div>
@@ -181,44 +354,8 @@
         list.appendChild(el);
       });
 
-      // attach qty controls
-      list.querySelectorAll('.qty').forEach(q => {
-        const input = q.querySelector('input');
-        q.children[0].addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value||'1',10)-1)); });
-        q.children[2].addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value||'1',10)+1)); });
-      });
-
-      // add-to-cart handlers
-      list.querySelectorAll('.btn.add').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = btn.getAttribute('data-id');
-          const p = PRODUCTS.find(x => x.id === id);
-          const qtyInput = btn.parentElement.querySelector('input');
-          const qty = Math.max(1, parseInt(qtyInput.value || '1', 10));
-          const existing = cart.get(id);
-          cart.set(id, { product: p, qty: (existing?.qty || 0) + qty });
-          renderCart(); // This will automatically save the cart
-          
-          // Add animation effect
-          btn.classList.add('animate-add');
-          btn.textContent = 'تم الإضافة ✓';
-          setTimeout(() => {
-            btn.textContent = 'أضف للسلة';
-            btn.classList.remove('animate-add');
-          }, 1000);
-        });
-      });
-
-      // preview handlers
-      list.querySelectorAll('.btn.preview').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = btn.getAttribute('data-id');
-          const product = PRODUCTS.find(x => x.id === id);
-          if (product) {
-            showProductPreview(product);
-          }
-        });
-      });
+      // Use the shared event handler attachment function
+      attachProductEventHandlers();
     }
 
     function renderCart() {
@@ -363,6 +500,148 @@
       document.getElementById('preview-modal').style.display = 'none';
       document.body.style.overflow = 'auto'; // Restore scrolling
       currentPreviewProduct = null;
+    }
+
+    function showSharedProductView(product) {
+      const list = document.getElementById('products');
+      list.innerHTML = `
+        <div style="grid-column: span 12; margin-bottom: 20px;">
+          <div class="shared-product-header">
+            <h2>🔗 منتج مشارك من AquaTech Pro</h2>
+            <div class="shared-product-actions">
+              <button class="btn secondary" onclick="clearUrlParams(); renderProducts();">عرض جميع المنتجات</button>
+              <button class="btn share" onclick="shareProduct(PRODUCTS.find(p => p.id === '${product.id}'))">مشاركة مرة أخرى 📤</button>
+            </div>
+          </div>
+        </div>
+        <article class="product featured-product">
+          <img src="${product.img}" alt="${product.name}" loading="lazy" style="width: 100%; height: 300px; object-fit: cover;">
+          <div class="body">
+            <div class="product-category">${product.category}</div>
+            <h3>${product.name}</h3>
+            <div class="price">${fmt(product.price)}</div>
+            <div class="product-description">${product.description}</div>
+            <div class="controls">
+              <div class="qty" data-id="${product.id}">
+                <button type="button" aria-label="تقليل">−</button>
+                <input type="number" min="1" value="1" inputmode="numeric" />
+                <button type="button" aria-label="زيادة">+</button>
+              </div>
+              <button class="btn preview" data-id="${product.id}" title="معاينة المنتج">👁️ معاينة</button>
+              <button class="btn add" data-id="${product.id}">أضف للسلة</button>
+            </div>
+            <div class="share-info">
+              <small>💡 شارك هذا المنتج مع أصدقائك واحصل على أفضل العروض من AquaTech Pro</small>
+            </div>
+          </div>
+        </article>
+        <div style="grid-column: span 12; margin-top: 30px;">
+          <div class="related-products-header">
+            <h3>🔥 منتجات ذات صلة</h3>
+            <p>اكتشف المزيد من منتجات السباكة عالية الجودة</p>
+          </div>
+        </div>
+      `;
+
+      // Add some related products (same category or random)
+      const relatedProducts = PRODUCTS.filter(p => 
+        p.id !== product.id && (p.category === product.category || Math.random() > 0.7)
+      ).slice(0, 6);
+
+      relatedProducts.forEach(p => {
+        const el = document.createElement('article');
+        el.className = 'product';
+        el.innerHTML = `
+          <img src="${p.img}" alt="${p.name}" loading="lazy" style="width: 100%; height: 200px; object-fit: cover;">
+          <div class="body">
+            <h3>${p.name}</h3>
+            <div class="price">${fmt(p.price)}</div>
+            <div class="controls">
+              <div class="qty" data-id="${p.id}">
+                <button type="button" aria-label="تقليل">−</button>
+                <input type="number" min="1" value="1" inputmode="numeric" />
+                <button type="button" aria-label="زيادة">+</button>
+              </div>
+              <button class="btn preview" data-id="${p.id}" title="معاينة المنتج">👁️</button>
+              <button class="btn share" data-id="${p.id}" title="مشاركة المنتج">📤</button>
+              <button class="btn add" data-id="${p.id}">أضف للسلة</button>
+            </div>
+          </div>
+        `;
+        list.appendChild(el);
+      });
+
+      // Attach event handlers (same as in renderProducts)
+      attachProductEventHandlers();
+
+      // Update page title and meta description for shared product
+      document.title = `${product.name} - AquaTech Pro`;
+      
+      // Update meta description
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.content = `${product.name} - ${product.description} - السعر: ${fmt(product.price)} من AquaTech Pro`;
+      }
+
+      // Update Open Graph tags for better social sharing
+      const ogTitle = document.querySelector('meta[property="og:title"]');
+      const ogDesc = document.querySelector('meta[property="og:description"]');
+      if (ogTitle) ogTitle.content = `${product.name} - AquaTech Pro`;
+      if (ogDesc) ogDesc.content = `${product.description} - السعر: ${fmt(product.price)}`;
+    }
+
+    function attachProductEventHandlers() {
+      const list = document.getElementById('products');
+      
+      // attach qty controls
+      list.querySelectorAll('.qty').forEach(q => {
+        const input = q.querySelector('input');
+        q.children[0].addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value||'1',10)-1)); });
+        q.children[2].addEventListener('click', () => { input.value = Math.max(1, (parseInt(input.value||'1',10)+1)); });
+      });
+
+      // add-to-cart handlers
+      list.querySelectorAll('.btn.add').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const p = PRODUCTS.find(x => x.id === id);
+          const qtyInput = btn.parentElement.querySelector('input');
+          const qty = Math.max(1, parseInt(qtyInput.value || '1', 10));
+          const existing = cart.get(id);
+          cart.set(id, { product: p, qty: (existing?.qty || 0) + qty });
+          renderCart();
+          
+          // Add animation effect
+          btn.classList.add('animate-add');
+          btn.textContent = 'تم الإضافة ✓';
+          setTimeout(() => {
+            btn.textContent = 'أضف للسلة';
+            btn.classList.remove('animate-add');
+          }, 1000);
+        });
+      });
+
+      // preview handlers
+      list.querySelectorAll('.btn.preview').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const product = PRODUCTS.find(x => x.id === id);
+          if (product) {
+            showProductPreview(product);
+          }
+        });
+      });
+
+      // share handlers
+      list.querySelectorAll('.btn.share').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const product = PRODUCTS.find(x => x.id === id);
+          if (product) {
+            shareProduct(product);
+          }
+        });
+      });
     }
 
     function validateForm(isSidebar=true) { // Always use sidebar validation since main cart removed
@@ -824,6 +1103,12 @@
       }, 1000);
     });
 
+    // Share from preview
+    document.getElementById('preview-share').addEventListener('click', () => {
+      if (!currentPreviewProduct) return;
+      shareProduct(currentPreviewProduct);
+    });
+
     // ======= LOADING SCREEN =======
     let loadingProgress = 0;
     
@@ -1011,7 +1296,22 @@
         const productsLoaded = await loadProducts();
         
         if (productsLoaded) {
-          renderProducts();
+          // Check for URL parameters (shared product)
+          const urlParams = getUrlParams();
+          if (urlParams.productId && urlParams.shared) {
+            const sharedProduct = PRODUCTS.find(p => p.id === urlParams.productId);
+            if (sharedProduct) {
+              // Show the shared product in a special view
+              showSharedProductView(sharedProduct);
+            } else {
+              // Product not found, clear URL and show all products
+              clearUrlParams();
+              renderProducts();
+            }
+          } else {
+            // Normal view - show all products
+            renderProducts();
+          }
           renderCart();
         } else {
           // في حالة فشل التحميل، سيتم عرض رسالة الخطأ من خلال showLoadingError
