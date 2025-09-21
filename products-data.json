@@ -4,7 +4,7 @@
       "id": "p1",
       "name": "بكرة تفلون 50 متر حجم كبير",
       "price": 20,
-      "category": "أدوات",
+      "category": "مستلزمات",
       "img": "./img/20250909_125009.jpg",
       "description": "بكرة تفلون عالية الجودة 50 متر حجم كبير، مناسبة لجميع أعمال السباكة والتركيبات"
     },
@@ -12,7 +12,7 @@
       "id": "p38",
       "name": "بكرة تفلون ايطالي وسط",
       "price": 15,
-      "category": "أدوات",
+      "category": "مستلزمات",
       "img": "./WADNESDAY2/20250909_125009.jpg",
       "description": "بكرة تفلون ايطالي وسط"
     },
@@ -20,7 +20,7 @@
       "id": "p37",
       "name": "بكرة تفلون ايطالي صغيرة",
       "price": 5,
-      "category": "أدوات",
+      "category": "مستلزمات",
       "img": "./WADNESDAY2/17.webp",
       "description": "بكرة تفلون ايطالي صغيرة"
     },
@@ -28,7 +28,7 @@
       "id": "p40",
       "name": "بكرة تفلون ايطالي لوكس",
       "price": 45,
-      "category": "أدوات",
+      "category": "مستلزمات",
       "img": "./WADNESDAY2/20.webp",
       "description": "بكرة تفلون ايطالي لوكس"
     },
@@ -319,47 +319,47 @@
       "price": 25,
       "category": "فلاتر",
       "img": "./WADNESDAY2/21.webp",
-      "description": "محبس فلتر 1/4 بوصة"
+      "description": "مصنع من النحاس الخالص ويتحمل الاجهاد و ذو جودة عالية"
     },
     {
       "id": "p42",
       "name": "كوتشة زملت مصرى",
       "price": 55,
-      "category": "قطع غيار",
+      "category": "قطع غيار ماوتير",
       "img": "./WADNESDAY2/22.webp",
-      "description": "كوتشة زملت مصرى"
+      "description": "مصنع من خامات ذات جودة متوسطة وتتحمل الاجهد المتوسط"
     },
     {
       "id": "p43",
       "name": "كوتشة صيني",
       "price": 85,
-      "category": "قطع غيار",
+      "category": "قطع غيار ماوتير",
       "img": "./WADNESDAY2/23.webp",
-      "description": "كوتشة صيني"
+      "description": "مصنعة من خامات ذات تحمل عالي ومن الربر الصناعي ذو جودة عالية"
     },
     {
       "id": "p44",
       "name": "كوتشة زملت ايطالي",
       "price": 145,
-      "category": "قطع غيار",
+      "category": "قطع غيار ماوتير",
       "img": "./WADNESDAY2/24.webp",
-      "description": "كوتشة زملت ايطالي"
+      "description": "مصنعة من خامات الزملت الطبيعي المتمحل للاجهاد العالي والملوحة ومياة الابار ذات الملوحة العالة"
     },
     {
       "id": "p45",
       "name": "كوتشة بلونة كلبيدا",
       "price": 170,
-      "category": "قطع غيار",
+      "category": "قطع غيار ماوتير",
       "img": "./WADNESDAY2/25.webp",
-      "description": "كوتشة بلونة كلبيدا"
+      "description": "مصنعة منا الربر الطبيعي ويحمل الاجهاد العلي"
     },
     {
       "id": "p46",
       "name": "كوتشة اسير زملت",
       "price": 220,
-      "category": "قطع غيار",
+      "category": "قطع غيار ماوتير",
       "img": "./WADNESDAY2/26.webp",
-      "description": "كوتشة اسير زملت"
+      "description": "كوتشة من الزملت عالي الجودة من استراد شركات عدلي يوسف"
     },
     {
       "id": "p47",
@@ -381,7 +381,7 @@
       "id": "p52",
       "name": "سماعة دش فسيا اخضر",
       "price": 85,
-      "category": "قطع غيار",
+      "category": "اكسسوار",
       "img": "./WADNESDAY2/32.webp",
       "description": "سماعة دش فسيا اخضر"
     },
@@ -389,7 +389,7 @@
       "id": "p53",
       "name": "سماعة دش (VIDMAR) الماني",
       "price": 185,
-      "category": "قطع غيار",
+      "category": "اكسسوار",
       "img": "./WADNESDAY2/33.webp",
       "description": "سماعة دش (VIDMAR) الماني"
     },
@@ -405,7 +405,7 @@
       "id": "p55",
       "name": "شطاف اتومتك ايطالي",
       "price": 55,
-      "category": "قطع غيار",
+      "category": "اكسسوار",
       "img": "./WADNESDAY2/35.webp",
       "description": "شطاف اتومتك ايطالي"
     },
@@ -477,7 +477,7 @@
       "id": "p64",
       "name": "سماعة دش فسيا اسود",
       "price": 100,
-      "category": "قطع غيار",
+      "category": "اكسسوار",
       "img": "./WADNESDAY2/44.webp",
       "description": "سماعة دش فسيا اسود"
     },
@@ -497,13 +497,207 @@
       "img": "./WADNESDAY2/46.webp",
       "description": "صرف حلة 3 بوصة P.V.C "
     },
-    {
+        {
       "id": "p67",
       "name": "قنطرة مكسر مطبخ 35سم",
       "price": 0,
       "category": "قطع غيار",
       "img": "./WADNESDAY2/47.webp",
       "description": "قنطرة مكسر مطبخ 35سم"
+    },
+    {
+      "id": "p68",
+      "name": "وصلة مرنة 30سم موديل اسباني",
+      "price": 15,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/48.webp",
+      "description": "وصلة مرنة 30سم موديل اسباني"
+    },
+    {
+      "id": "p69",
+      "name": "وصلة مرنة 40سم موديل اسباني",
+      "price": 20,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/49.webp",
+      "description": "وصلة مرنة 40سم موديل اسباني"
+    },
+    {
+      "id": "p70",
+      "name": "وصلة مرنة 50سم موديل اسباني",
+      "price": 25,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/50.webp",
+      "description": "وصلة مرنة 50سم موديل اسباني"
+    },
+    {
+      "id": "p71",
+      "name": "وصلة مرنة 60سم موديل اسباني",
+      "price": 25,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/51.webp",
+      "description": "وصلة مرنة 60سم موديل اسباني"
+    },
+    {
+      "id": "p72",
+      "name": "وصلة مرنة 70سم موديل اسباني",
+      "price": 45,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/52.webp",
+      "description": "وصلة مرنة 70سم موديل اسباني"
+    },
+    {
+      "id": "p73",
+      "name": "وصلة مرنة 80سم موديل اسباني",
+      "price": 45,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/53.webp",
+      "description": "وصلة مرنة 80سم موديل اسباني"
+    },
+    {
+      "id": "p74",
+      "name": "وصلة مرنة 90سم موديل اسباني",
+      "price": 55,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/54.webp",
+      "description": "وصلة مرنة 90سم موديل اسباني"
+    },
+    {
+      "id": "p75",
+      "name": "وصلة مرنة 1 متر موديل اسباني",
+      "price": 60,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/55.webp",
+      "description": "وصلة مرنة 1 متر موديل اسباني"
+    },
+    {
+      "id": "p76",
+      "name": "وصلة مرنة 50سم اسباني اصلي",
+      "price": 120,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/56.webp",
+      "description": "وصلة مرنة 50سم اسباني اصلي"
+    },
+    {
+      "id": "p77",
+      "name": "وصلة مرنة 60سم موديل اسباني",
+      "price": 120,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/57.webp",
+      "description": "وصلة مرنة 60سم موديل اسباني"
+    },
+    {
+      "id": "p78",
+      "name": "وصلة مرنة50 شجرة &60سم موديل اسباني",
+      "price": 20,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/58.webp",
+      "description": "وصلة مرنة50 شجرة &60سم موديل اسباني"
+    },
+    {
+      "id": "p79",
+      "name": "وصلة شجرة مرنة 50سم اصيل اصلي",
+      "price": 85,
+      "category": "نواكل",
+      "img": "./WADNESDAY2/59.webp",
+      "description": "وصلة شجرة مرنة 50سم اصيل اصلي"
+    },
+    {
+      "id": "p80",
+      "name": "نطرة محبس 1/2 بوصة نحاس",
+      "price": 30,
+      "category": "فلاتر",
+      "img": "./WADNESDAY2/60.webp",
+      "description": "نطرة محبس 1/2 بوصة نحاس"
+    },
+    {
+      "id": "p81",
+      "name": "ماكينة الامين ضغط ميكانيكا الامين",
+      "price": 90,
+      "category": "قطع غيار",
+      "img": "./WADNESDAY2/61.webp",
+      "description": "ماكينة الامين ضغط ميكانيكا الامين"
+    },
+    {
+      "id": "p82",
+      "name": "ماكينة نوفا ضغط ميكانيكا",
+      "price": 80,
+      "category": "قطع غيار",
+      "img": "./WADNESDAY2/62.webp",
+      "description": "ماكينة نوفا ضغط ميكانيكا"
+    },
+    {
+      "id": "p83",
+      "name": "سدلي الشعلة P.V.C هاي كولتي اللوان",
+      "price": 70,
+      "category": "قطع غيار",
+      "img": "./WADNESDAY2/63.webp",
+      "description": "سدلي الشعلة P.V.C هاي كولتي اللوان"
+    },
+    {
+      "id": "p84",
+      "name": "بلونة ماطور مصرى ماركة هارلي",
+      "price": 350,
+      "category": "قطع غيار ماوتير",
+      "img": "./WADNESDAY2/64.webp",
+      "description": "بلونة ماطور مصرى ماركة هارلي"
+    },
+    {
+      "id": "p85",
+      "name": "حنفية غسالة الافور اسمارت كوبر",
+      "price": 55,
+      "category": "حنفيات",
+      "img": "./WADNESDAY2/65.webp",
+      "description": "حنفية غسالة الافور اسمارت كوبر"
+    },
+    {
+      "id": "p86",
+      "name": "حنفية غسالة P.G بلس اسمارت كوبر",
+      "price": 75,
+      "category": "حنفيات",
+      "img": "./WADNESDAY2/66.webp",
+      "description": "حنفية غسالة P.G بلس اسمارت كوبر"
+    },
+    {
+      "id": "p87",
+      "name": "ماكينة كومنيشن الامين شداد عامودي",
+      "price": 70,
+      "category": "قطع غيار",
+      "img": "./WADNESDAY2/67.webp",
+      "description": "ماكينة كومنيشن الامين شداد عامودي"
+    },
+    {
+      "id": "p88",
+      "name": "ماكينة كومنيشن الامين شداد جانبي (2-1,25) بوصة",
+      "price": 70,
+      "category": "قطع غيار",
+      "img": "./WADNESDAY2/68.webp",
+      "description": "ماكينة كومنيشن الامين شداد جانبي (2-1,25) بوصة"
+    },
+    {
+      "id": "p89",
+      "name": "مانيجة سوستة تركي 4 بوصة",
+      "price": 50,
+      "category": "قطع غيار",
+      "img": "./WADNESDAY2/69.webp",
+      "description": "مانيجة سوستة تركي 4 بوصة"
     }
+
   ]
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
