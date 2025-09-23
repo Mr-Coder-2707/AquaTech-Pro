@@ -5,15 +5,15 @@
       "name": "بكرة تفلون 50 متر حجم كبير",
       "price": 20,
       "category": "مستلزمات",
-      "img": "./img/20250909_125009.jpg",
+      "img": "./assets/images-products-data/20250909_125009.jpg",
       "description": "بكرة تفلون عالية الجودة 50 متر حجم كبير، مناسبة لجميع أعمال السباكة والتركيبات"
     },
-        {
+    {
       "id": "p38",
       "name": "بكرة تفلون ايطالي وسط",
       "price": 15,
       "category": "مستلزمات",
-      "img": "./WADNESDAY2/20250909_125009.jpg",
+      "img": "./assets/images-products-data/20250909_125009.jpg",
       "description": "بكرة تفلون ايطالي وسط"
     },
     {
@@ -21,7 +21,7 @@
       "name": "بكرة تفلون ايطالي صغيرة",
       "price": 5,
       "category": "مستلزمات",
-      "img": "./WADNESDAY2/17.webp",
+      "img": "./assets/images-products-data/17.webp",
       "description": "بكرة تفلون ايطالي صغيرة"
     },
     {
@@ -29,16 +29,15 @@
       "name": "بكرة تفلون ايطالي لوكس",
       "price": 45,
       "category": "مستلزمات",
-      "img": "./WADNESDAY2/20.webp",
+      "img": "./assets/images-products-data/20.webp",
       "description": "بكرة تفلون ايطالي لوكس"
     },
-
     {
       "id": "p2",
       "name": "قلب خلاط  3.5 لنيه ايطالي",
       "price": 20,
       "category": "قطع غيار",
-      "img": "./img/20250909_124903.jpg",
+      "img": "./assets/images-products-data/20250909_124903.jpg",
       "description": "قلب حنفية إيطالي عالي الجودة 3.5 لنيه، مقاوم للتآكل ويدوم لفترة طويلة"
     },
     {
@@ -46,7 +45,7 @@
       "name": "حنفية مطبخ ستانلس ستيل مع رشاش",
       "price": 25,
       "category": "حنفيات",
-      "img": "./img/2.png",
+      "img": "./assets/images-products-data/2.png",
       "description": "حنفية مطبخ فاخرة من الستانلس ستيل المقاوم للصدأ. مزودة برشاش قابل للسحب. تصميم عصري أنيق. سهلة التنظيف والصيانة. ضمان 5 سنوات من الشركة المصنعة."
     },
     {
@@ -54,7 +53,7 @@
       "name": "صرف حوض مطبخ 2بوصة مستورد",
       "price": 35,
       "category": "قطع غيار",
-      "img": "./img/sarf.jpg",
+      "img": "./assets/images-products-data/sarf.jpg",
       "description": "سيفون مطبخ من PVC البلاستيك الأبيض. تصميم أنيق يناسب المطابخ العصرية. سهل التنظيف والصيانة. مزود بصمام منع الروائح. تركيب سهل بدون أدوات خاصة."
     },
     {
@@ -62,7 +61,7 @@
       "name": "حنفية pg smart copper نحاس بلدي",
       "price": 120,
       "category": "حنفيات",
-      "img": "./img/PG-CU.jpg",
+      "img": "./assets/images-products-data/PG-CU.jpg",
       "description": "حنفية نحاس بكامل لا تصدأ القلب لا يتلف بيتغير له جوان \"جلد حنفية بلدي\" بضمان اسمارت كوبير"
     },
     {
@@ -70,7 +69,7 @@
       "name": "حنفية pg smart copper نحاس سكينة",
       "price": 85,
       "category": "حنفيات",
-      "img": "./img/PG-OR.jpg",
+      "img": "./assets/images-products-data/PG-OR.jpg",
       "description": "حنفية نحاس بكامل لا تصدأ \"سكينة لاكور نحاس\" بضمان اسمارت كوبير"
     },
     {
@@ -78,7 +77,7 @@
       "name": "حنفية pg smart copper نحاس سكينة",
       "price": 100,
       "category": "حنفيات",
-      "img": "./img/PG-RED.jpg",
+      "img": "./assets/images-products-data/PG-RED.jpg",
       "description": "حنفية نحاس بكامل لا تصدأ \"سكينة لاكور نحاس ولاكور بلاستك احمر\" بضمان اسمارت كوبير"
     },
     {
@@ -86,7 +85,7 @@
       "name": "حنفية LAVOR smart copper نحاس سكينة",
       "price": 60,
       "category": "حنفيات",
-      "img": "./img/LAVOR-B.jpg",
+      "img": "./assets/images-products-data/LAVOR-B.jpg",
       "description": "حنفية نحاس بكامل لا تصدأ \"سكينة لاكور بلاستك وزن خفيف\" بضمان اسمارت كوبير"
     },
     {
@@ -94,7 +93,7 @@
       "name": "حنفيةسكينة بولي سن نحاس بلية من ستانلس ستيل بلاستك ابيض",
       "price": 35,
       "category": "حنفيات",
-      "img": "./img/PVC-W.jpg",
+      "img": "./assets/images-products-data/PVC-W.jpg",
       "description": "مع العلم  ان الحنفيات البلاستك لاترد و لا تستبدل اليد بلاستك مدعومة بقطعة حديد حنفيةسكينة PVC بلاستك ابيض \"بسن نحاس و الجسم PVC\""
     },
     {
@@ -102,15 +101,15 @@
       "name": "حنفيةسكينة PVC بلاستك اسود",
       "price": 25,
       "category": "حنفيات",
-      "img": "./img/PVC-B.jpg",
+      "img": "./assets/images-products-data/PVC-B.jpg",
       "description": "مع العلم ان الحنفيات البلاستك لاترد و لا تستبدل حنفيةسكينة PVC اليد بلاستك بكامل بلاستك اسود \"بسن نحاس و الجسم PVC\""
     },
     {
       "id": "p11",
       "name": "حنفية ماكنية ضغط كنبنيشن FIRST",
-      "price": 35,
+      "price": 25,
       "category": "حنفيات",
-      "img": "./img/FIRST.jpg",
+      "img": "./assets/images-products-data/FIRST.jpg",
       "description": "حنفية ماكنية كنبنيشن FIRST مع العلم ان الحنفيات البلاستك لاترد و لا تستبدل"
     },
     {
@@ -118,7 +117,7 @@
       "name": "حنفية كوبشة نحاس نيكل ثقيل",
       "price": 180,
       "category": "حنفيات",
-      "img": "./img/nekal.jpg",
+      "img": "./assets/images-products-data/nekal.jpg",
       "description": "حنفية كوبشة نحاس نيكل ثقيل"
     },
     {
@@ -126,7 +125,7 @@
       "name": "صرف حوض وش \"حمام 1.5بوصة\"",
       "price": 35,
       "category": "قطع غيار",
-      "img": "./img/matbkh.jpg",
+      "img": "./assets/images-products-data/matbkh.jpg",
       "description": "صرف PVC ابيض تركي لحوض الحمام"
     },
     {
@@ -134,7 +133,7 @@
       "name": "حنفية first بولي PPR معالج حراري بلاستك ابيض" ,
       "price": 15,
       "category": "حنفيات",
-      "img": "./img/first1.jpg",
+      "img": "./assets/images-products-data/first1.jpg",
       "description": "مع العلم ان الحنفيات البلاستك لاترد و لا تستبدل اليد بلاستك مدعومة بقطعة حديد حنفيةسكينة PVC بلاستك ابيض \"بسن نحاس و الجسم PVC\""
     },
     {
@@ -142,7 +141,7 @@
       "name": "حنفية   ماليزي PPR معالج حراري بلاستك ابيض",
       "price": 25,
       "category": "حنفيات",
-      "img": "./img/plastk.jpg",
+      "img": "./assets/images-products-data/plastk.jpg",
       "description": "مع العلم ان الحنفيات البلاستك لاترد و لا تستبدل اليد بلاستك مدعومة بقطعة حديد حنفيةسكينة PVC بلاستك ابيض \"بسن نحاس و الجسم PVC\""
     },
     {
@@ -150,7 +149,7 @@
       "name": "صرف حوض مطبخ \"حمام 2 بوصة\"مصري First",
       "price": 20,
       "category": "قطع غيار",
-      "img": "./img/first2.jpg",
+      "img": "./assets/images-products-data/first2.jpg",
       "description": "صرف PVC ابيض تركي لحوض الحمام"
     },
     {
@@ -158,7 +157,7 @@
       "name": "قلب خلاط سن قصير ايطالي 1/2",
       "price": 35,
       "category": "قطع غيار",
-      "img": "./img/qalb.jpg",
+      "img": "./assets/images-products-data/qalb.jpg",
       "description": "قلب حنفية إيطالي عالي الجودة 3.5 لنيه، مقاوم للتآكل ويدوم لفترة طويلة"
     },
     {
@@ -166,7 +165,7 @@
       "name": "طقم شمع فلتر امريكي 3 قطع ",
       "price": 95,
       "category": "فلاتر",
-      "img": "./img/20250911_163315.jpg",
+      "img": "./assets/images-products-data/20250911_163315.jpg",
       "description": "قلب حنفية إيطالي عالي الجودة 3.5 لنيه، مقاوم للتآكل ويدوم لفترة طويلة"
     },
     {
@@ -174,7 +173,7 @@
       "name": "محبس زاوية طويل \"القلب قابل للتغير\"ايطالي",
       "price": 55,
       "category": "قطع غيار",
-      "img": "./img/20250911_163608.jpg",
+      "img": "./assets/images-products-data/20250911_163608.jpg",
       "description": "القلب قابل للتغير"
     },
     {
@@ -182,7 +181,7 @@
       "name": "غطاء بلاعة حمام ستانلس ستيل 20*20 \"خفيف\"مصري",
       "price": 50,
       "category": "قطع غيار",
-      "img": "./img/20250911_163437.jpg",
+      "img": "./assets/images-products-data/20250911_163437.jpg",
       "description": "غطاء بلاعة حمام ستانلس ستيل 20*20 \"خفيف\"مصري"
     },
     {
@@ -190,7 +189,7 @@
       "name": "غطاء بلاعة حمام ستانلس ستيل 20*20 \"ثقيل\"مصري",
       "price": 65,
       "category": "قطع غيار",
-      "img": "./img/20250911_163518.jpg",
+      "img": "./assets/images-products-data/20250911_163518.jpg",
       "description": "غطاء بلاعة حمام ستانلس ستيل 20*20 \"ثقيل\"مصري"
     },
     {
@@ -198,7 +197,7 @@
       "name": "نحاسة بلعداد \"ايطالي\"ثقيلE SCOOLER PLUS",
       "price": 220,
       "category": "مضخات",
-      "img": "./img/20250911_164526.jpg",
+      "img": "./assets/images-products-data/20250911_164526.jpg",
       "description": "E SCOOLER PLUS نحاسة بلعداد \"ايطالي\"ثقيل"
     },
     {
@@ -206,7 +205,7 @@
       "name": "اوتوماتيك موتور المياه\"ايطالي\"E SCOOLER PLUS",
       "price": 220,
       "category": "مضخات",
-      "img": "./img/20250911_164317.jpg",
+      "img": "./assets/images-products-data/20250911_164317.jpg",
       "description": "اوتوماتيك موتور المياه\"ايطالي\"E SCOOLER PLUS"
     },
     {
@@ -214,7 +213,7 @@
       "name": "اكرة جاجور جاودة عالي فبر",
       "price": 15,
       "category": "أدوات",
-      "img": "./WADNESDAY2/4.webp",
+      "img": "./assets/images-products-data/4.webp",
       "description": "اكرة جاجور جاودة عالي فبر"
     },
     {
@@ -222,7 +221,7 @@
       "name": "قلب محبس دفن 1/2 بوصة",
       "price": 30,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/5.webp",
+      "img": "./assets/images-products-data/5.webp",
       "description": "قلب محبس دفن 1/2 بوصة"
     },
     {
@@ -230,7 +229,7 @@
       "name": "قلب محبس دفن 3/4 بوصة نحاس",
       "price": 40,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/6.webp",
+      "img": "./assets/images-products-data/6.webp",
       "description": "قلب محبس دفن 3/4 بوصة نحاس"
     },
     {
@@ -238,7 +237,7 @@
       "name": "قلب محبس دفن 1/2 بوصة اتا",
       "price": 50,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/7.webp",
+      "img": "./assets/images-products-data/7.webp",
       "description": "قلب محبس دفن 1/2 بوصة اتا"
     },
     {
@@ -246,7 +245,7 @@
       "name": "قنطرة 6 لنية مطبخ استنلستيل",
       "price": 30,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/8.webp",
+      "img": "./assets/images-products-data/8.webp",
       "description": "قنطرة 6 لنية مطبخ استنلستيل"
     },
     {
@@ -254,7 +253,7 @@
       "name": "قنطرة 6 لنية وش استنلستيل",
       "price": 25,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/9.webp",
+      "img": "./assets/images-products-data/9.webp",
       "description": "قنطرة 6 لنية وش استنلستيل"
     },
     {
@@ -262,7 +261,7 @@
       "name": "جلبة تطويل 1/2*1/2 استنلستيل ثقيل",
       "price": 25,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/10.webp",
+      "img": "./assets/images-products-data/10.webp",
       "description": "جلبة تطويل 1/2*1/2 استنلستيل ثقيل"
     },
     {
@@ -270,7 +269,7 @@
       "name": "جلبة تطويل 1/2*1/2 نحاس",
       "price": 35,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/11.webp",
+      "img": "./assets/images-products-data/11.webp",
       "description": "جلبة تطويل 1/2*1/2 نحاس"
     },
     {
@@ -278,7 +277,7 @@
       "name": "معلقة خلاط هاند مكسر هارد نيكل كروم",
       "price": 35,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/12.webp",
+      "img": "./assets/images-products-data/12.webp",
       "description": "معلقة خلاط هاند مكسر هارد نيكل كروم"
     },
     {
@@ -286,7 +285,7 @@
       "name": "قلب مكسر كبير",
       "price": 15,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/13.webp",
+      "img": "./assets/images-products-data/13.webp",
       "description": "قلب مكسر كبير"
     },
     {
@@ -294,7 +293,7 @@
       "name": "قلب مكسر صغير",
       "price": 15,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/14.webp",
+      "img": "./assets/images-products-data/14.webp",
       "description": "قلب مكسر صغير"
     },
     {
@@ -302,7 +301,7 @@
       "name": "قلب مكسر كبير بشفة",
       "price": 20,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/15.webp",
+      "img": "./assets/images-products-data/15.webp",
       "description": "قلب مكسر كبير بشفة"
     },
     {
@@ -310,7 +309,7 @@
       "name": "قنطرة مكسر وش عادى",
       "price": 50,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/16.webp",
+      "img": "./assets/images-products-data/16.webp",
       "description": "قنطرة مكسر وش عادى"
     },
     {
@@ -318,7 +317,7 @@
       "name": "محبس فلتر 1/4 بوصة",
       "price": 25,
       "category": "فلاتر",
-      "img": "./WADNESDAY2/21.webp",
+      "img": "./assets/images-products-data/21.webp",
       "description": "مصنع من النحاس الخالص ويتحمل الاجهاد و ذو جودة عالية"
     },
     {
@@ -326,7 +325,7 @@
       "name": "كوتشة زملت مصرى",
       "price": 55,
       "category": "قطع غيار ماوتير",
-      "img": "./WADNESDAY2/22.webp",
+      "img": "./assets/images-products-data/22.webp",
       "description": "مصنع من خامات ذات جودة متوسطة وتتحمل الاجهد المتوسط"
     },
     {
@@ -334,7 +333,7 @@
       "name": "كوتشة صيني",
       "price": 85,
       "category": "قطع غيار ماوتير",
-      "img": "./WADNESDAY2/23.webp",
+      "img": "./assets/images-products-data/23.webp",
       "description": "مصنعة من خامات ذات تحمل عالي ومن الربر الصناعي ذو جودة عالية"
     },
     {
@@ -342,7 +341,7 @@
       "name": "كوتشة زملت ايطالي",
       "price": 145,
       "category": "قطع غيار ماوتير",
-      "img": "./WADNESDAY2/24.webp",
+      "img": "./assets/images-products-data/24.webp",
       "description": "مصنعة من خامات الزملت الطبيعي المتمحل للاجهاد العالي والملوحة ومياة الابار ذات الملوحة العالة"
     },
     {
@@ -350,7 +349,7 @@
       "name": "كوتشة بلونة كلبيدا",
       "price": 170,
       "category": "قطع غيار ماوتير",
-      "img": "./WADNESDAY2/25.webp",
+      "img": "./assets/images-products-data/25.webp",
       "description": "مصنعة منا الربر الطبيعي ويحمل الاجهاد العلي"
     },
     {
@@ -358,7 +357,7 @@
       "name": "كوتشة اسير زملت",
       "price": 220,
       "category": "قطع غيار ماوتير",
-      "img": "./WADNESDAY2/26.webp",
+      "img": "./assets/images-products-data/26.webp",
       "description": "كوتشة من الزملت عالي الجودة من استراد شركات عدلي يوسف"
     },
     {
@@ -366,7 +365,7 @@
       "name": "حنفية PG لوكس",
       "price": 180,
       "category": "حنفيات",
-      "img": "./WADNESDAY2/27.webp",
+      "img": "./assets/images-products-data/27.webp",
       "description": "حنفية PG لوكس"
     },
     {
@@ -374,7 +373,7 @@
       "name": "ماكينة كومبنيشن فرست (FRIST)",
       "price": 110,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/31.webp",
+      "img": "./assets/images-products-data/31.webp",
       "description": "ماكينة كومبنيشن فرست (FRIST)"
     },
     {
@@ -382,7 +381,7 @@
       "name": "سماعة دش فسيا اخضر",
       "price": 85,
       "category": "اكسسوار",
-      "img": "./WADNESDAY2/32.webp",
+      "img": "./assets/images-products-data/32.webp",
       "description": "سماعة دش فسيا اخضر"
     },
     {
@@ -390,7 +389,7 @@
       "name": "سماعة دش (VIDMAR) الماني",
       "price": 185,
       "category": "اكسسوار",
-      "img": "./WADNESDAY2/33.webp",
+      "img": "./assets/images-products-data/33.webp",
       "description": "سماعة دش (VIDMAR) الماني"
     },
     {
@@ -398,7 +397,7 @@
       "name": "خرطوم دش استنلستيل 1.5متر صامولة نحاس وبنز نحاس بني",
       "price": 50,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/34.webp",
+      "img": "./assets/images-products-data/34.webp",
       "description": "خرطوم دش استنلستيل 1.5متر صامولة نحاس وبنز نحاس بني"
     },
     {
@@ -406,7 +405,7 @@
       "name": "شطاف اتومتك ايطالي",
       "price": 55,
       "category": "اكسسوار",
-      "img": "./WADNESDAY2/35.webp",
+      "img": "./assets/images-products-data/35.webp",
       "description": "شطاف اتومتك ايطالي"
     },
     {
@@ -414,7 +413,7 @@
       "name": "صرف تركي P.V.C حوض مطبخ",
       "price": 55,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/36.webp",
+      "img": "./assets/images-products-data/36.webp",
       "description": "صرف تركي P.V.C حوض مطبخ"
     },
     {
@@ -422,7 +421,7 @@
       "name": "صرف تركي P.V.C حوض وش",
       "price": 55,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/37.webp",
+      "img": "./assets/images-products-data/37.webp",
       "description": "صرف تركي P.V.C حوض وش"
     },
     {
@@ -430,7 +429,7 @@
       "name": "ماكينة كومبنيشن بلد (BUILD)",
       "price": 85,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/38.webp",
+      "img": "./assets/images-products-data/38.webp",
       "description": "ماكينة كومبنيشن بلد (BUILD)"
     },
     {
@@ -438,7 +437,7 @@
       "name": "طاسة دش ايطالي بولي سوبر لوكس",
       "price": 95,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/39.webp",
+      "img": "./assets/images-products-data/39.webp",
       "description": "طاسة دش ايطالي بولي سوبر لوكس"
     },
     {
@@ -446,7 +445,7 @@
       "name": "محبس زاوية نحاس خفيف",
       "price": 30,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/40.webp",
+      "img": "./assets/images-products-data/40.webp",
       "description": "محبس زاوية نحاس خفيف"
     },
     {
@@ -454,7 +453,7 @@
       "name": "شطاف اتومتك سوبر لوكس مستورد",
       "price": 110,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/41.webp",
+      "img": "./assets/images-products-data/41.webp",
       "description": "شطاف اتومتك سوبر لوكس مستورد"
     },
     {
@@ -462,7 +461,7 @@
       "name": "حنفية اسنسير 3/8 سن نحاس (GOLD)",
       "price": 55,
       "category": "حنفيات",
-      "img": "./WADNESDAY2/42.webp",
+      "img": "./assets/images-products-data/42.webp",
       "description": "حنفية اسنسير 3/8 سن نحاس (GOLD)"
     },
     {
@@ -470,7 +469,7 @@
       "name": "خرطوم دش سوستة حرارى سوبر لوكس",
       "price": 55,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/43.webp",
+      "img": "./assets/images-products-data/43.webp",
       "description": "خرطوم دش سوستة حرارى سوبر لوكس"
     },
     {
@@ -478,7 +477,7 @@
       "name": "سماعة دش فسيا اسود",
       "price": 100,
       "category": "اكسسوار",
-      "img": "./WADNESDAY2/44.webp",
+      "img": "./assets/images-products-data/44.webp",
       "description": "سماعة دش فسيا اسود"
     },
     {
@@ -486,7 +485,7 @@
       "name": "صرف حلة 3 بوصة تورو مستورد سوبرلوكس",
       "price": 65,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/45.webp",
+      "img": "./assets/images-products-data/45.webp",
       "description": "صرف حلة 3 بوصة تورو مستورد سوبرلوكس"
     },
     {
@@ -494,15 +493,15 @@
       "name": "صرف حلة 3 بوصة P.V.C",
       "price": 35,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/46.webp",
+      "img": "./assets/images-products-data/46.webp",
       "description": "صرف حلة 3 بوصة P.V.C "
     },
-        {
+    {
       "id": "p67",
       "name": "قنطرة مكسر مطبخ 35سم",
       "price": 0,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/47.webp",
+      "img": "./assets/images-products-data/47.webp",
       "description": "قنطرة مكسر مطبخ 35سم"
     },
     {
@@ -510,7 +509,7 @@
       "name": "وصلة مرنة 30سم موديل اسباني",
       "price": 15,
       "category": "نواكل",
-      "img": "./WADNESDAY2/48.webp",
+      "img": "./assets/images-products-data/48.webp",
       "description": "وصلة مرنة 30سم موديل اسباني"
     },
     {
@@ -518,7 +517,7 @@
       "name": "وصلة مرنة 40سم موديل اسباني",
       "price": 20,
       "category": "نواكل",
-      "img": "./WADNESDAY2/49.webp",
+      "img": "./assets/images-products-data/49.webp",
       "description": "وصلة مرنة 40سم موديل اسباني"
     },
     {
@@ -526,7 +525,7 @@
       "name": "وصلة مرنة 50سم موديل اسباني",
       "price": 25,
       "category": "نواكل",
-      "img": "./WADNESDAY2/50.webp",
+      "img": "./assets/images-products-data/50.webp",
       "description": "وصلة مرنة 50سم موديل اسباني"
     },
     {
@@ -534,7 +533,7 @@
       "name": "وصلة مرنة 60سم موديل اسباني",
       "price": 25,
       "category": "نواكل",
-      "img": "./WADNESDAY2/51.webp",
+      "img": "./assets/images-products-data/51.webp",
       "description": "وصلة مرنة 60سم موديل اسباني"
     },
     {
@@ -542,7 +541,7 @@
       "name": "وصلة مرنة 70سم موديل اسباني",
       "price": 45,
       "category": "نواكل",
-      "img": "./WADNESDAY2/52.webp",
+      "img": "./assets/images-products-data/52.webp",
       "description": "وصلة مرنة 70سم موديل اسباني"
     },
     {
@@ -550,7 +549,7 @@
       "name": "وصلة مرنة 80سم موديل اسباني",
       "price": 45,
       "category": "نواكل",
-      "img": "./WADNESDAY2/53.webp",
+      "img": "./assets/images-products-data/53.webp",
       "description": "وصلة مرنة 80سم موديل اسباني"
     },
     {
@@ -558,7 +557,7 @@
       "name": "وصلة مرنة 90سم موديل اسباني",
       "price": 55,
       "category": "نواكل",
-      "img": "./WADNESDAY2/54.webp",
+      "img": "./assets/images-products-data/54.webp",
       "description": "وصلة مرنة 90سم موديل اسباني"
     },
     {
@@ -566,7 +565,7 @@
       "name": "وصلة مرنة 1 متر موديل اسباني",
       "price": 60,
       "category": "نواكل",
-      "img": "./WADNESDAY2/55.webp",
+      "img": "./assets/images-products-data/55.webp",
       "description": "وصلة مرنة 1 متر موديل اسباني"
     },
     {
@@ -574,7 +573,7 @@
       "name": "وصلة مرنة 50سم اسباني اصلي",
       "price": 120,
       "category": "نواكل",
-      "img": "./WADNESDAY2/56.webp",
+      "img": "./assets/images-products-data/56.webp",
       "description": "وصلة مرنة 50سم اسباني اصلي"
     },
     {
@@ -582,7 +581,7 @@
       "name": "وصلة مرنة 60سم موديل اسباني",
       "price": 120,
       "category": "نواكل",
-      "img": "./WADNESDAY2/57.webp",
+      "img": "./assets/images-products-data/57.webp",
       "description": "وصلة مرنة 60سم موديل اسباني"
     },
     {
@@ -590,7 +589,7 @@
       "name": "وصلة مرنة50 شجرة &60سم موديل اسباني",
       "price": 20,
       "category": "نواكل",
-      "img": "./WADNESDAY2/58.webp",
+      "img": "./assets/images-products-data/58.webp",
       "description": "وصلة مرنة50 شجرة &60سم موديل اسباني"
     },
     {
@@ -598,7 +597,7 @@
       "name": "وصلة شجرة مرنة 50سم اصيل اصلي",
       "price": 85,
       "category": "نواكل",
-      "img": "./WADNESDAY2/59.webp",
+      "img": "./assets/images-products-data/59.webp",
       "description": "وصلة شجرة مرنة 50سم اصيل اصلي"
     },
     {
@@ -606,7 +605,7 @@
       "name": "نطرة محبس 1/2 بوصة نحاس",
       "price": 30,
       "category": "فلاتر",
-      "img": "./WADNESDAY2/60.webp",
+      "img": "./assets/images-products-data/60.webp",
       "description": "نطرة محبس 1/2 بوصة نحاس"
     },
     {
@@ -614,7 +613,7 @@
       "name": "ماكينة الامين ضغط ميكانيكا الامين",
       "price": 90,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/61.webp",
+      "img": "./assets/images-products-data/61.webp",
       "description": "ماكينة الامين ضغط ميكانيكا الامين"
     },
     {
@@ -622,7 +621,7 @@
       "name": "ماكينة نوفا ضغط ميكانيكا",
       "price": 80,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/62.webp",
+      "img": "./assets/images-products-data/62.webp",
       "description": "ماكينة نوفا ضغط ميكانيكا"
     },
     {
@@ -630,7 +629,7 @@
       "name": "سدلي الشعلة P.V.C هاي كولتي اللوان",
       "price": 70,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/63.webp",
+      "img": "./assets/images-products-data/63.webp",
       "description": "سدلي الشعلة P.V.C هاي كولتي اللوان"
     },
     {
@@ -638,7 +637,7 @@
       "name": "بلونة ماطور مصرى ماركة هارلي",
       "price": 350,
       "category": "قطع غيار ماوتير",
-      "img": "./WADNESDAY2/64.webp",
+      "img": "./assets/images-products-data/64.webp",
       "description": "بلونة ماطور مصرى ماركة هارلي"
     },
     {
@@ -646,7 +645,7 @@
       "name": "حنفية غسالة الافور اسمارت كوبر",
       "price": 55,
       "category": "حنفيات",
-      "img": "./WADNESDAY2/65.webp",
+      "img": "./assets/images-products-data/65.webp",
       "description": "حنفية غسالة الافور اسمارت كوبر"
     },
     {
@@ -654,7 +653,7 @@
       "name": "حنفية غسالة P.G بلس اسمارت كوبر",
       "price": 75,
       "category": "حنفيات",
-      "img": "./WADNESDAY2/66.webp",
+      "img": "./assets/images-products-data/66.webp",
       "description": "حنفية غسالة P.G بلس اسمارت كوبر"
     },
     {
@@ -662,7 +661,7 @@
       "name": "ماكينة كومنيشن الامين شداد عامودي",
       "price": 70,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/67.webp",
+      "img": "./assets/images-products-data/67.webp",
       "description": "ماكينة كومنيشن الامين شداد عامودي"
     },
     {
@@ -670,7 +669,7 @@
       "name": "ماكينة كومنيشن الامين شداد جانبي (2-1,25) بوصة",
       "price": 70,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/68.webp",
+      "img": "./assets/images-products-data/68.webp",
       "description": "ماكينة كومنيشن الامين شداد جانبي (2-1,25) بوصة"
     },
     {
@@ -678,26 +677,8 @@
       "name": "مانيجة سوستة تركي 4 بوصة",
       "price": 50,
       "category": "قطع غيار",
-      "img": "./WADNESDAY2/69.webp",
+      "img": "./assets/images-products-data/69.webp",
       "description": "مانيجة سوستة تركي 4 بوصة"
     }
-
   ]
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

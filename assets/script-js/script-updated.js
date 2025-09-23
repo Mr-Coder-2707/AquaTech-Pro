@@ -13,7 +13,7 @@
     async function loadProducts() {
       try {
         console.log('Loading products from JSON file...');
-        const response = await fetch('./products-data.json');
+        const response = await fetch('./assets/products-db/products-data.json');
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
