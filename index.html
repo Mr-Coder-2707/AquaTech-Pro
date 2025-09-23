@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
@@ -80,9 +80,6 @@
   </script>
   
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="manifest" href="manifest.json">
   
   <!-- Canonical URL -->
@@ -90,6 +87,9 @@
   
   <!-- External CSS -->
   <link rel="stylesheet" href="style.css">
+  
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   
   <!-- Google Fonts (if needed) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,8 +161,6 @@
         <h2 class="preview-title" id="preview-name">اسم المنتج</h2>
         <div class="preview-price" id="preview-price">0.00 جنيه</div>
         <div class="preview-description" id="preview-desc">
-          هذا المنتج عالي الجودة ومصنوع من مواد طبيعية 100%. يتميز بنكهة رائعة وفوائد صحية متعددة.
-          مناسب للاستخدام اليومي ويأتي بتغليف محكم للحفاظ على الجودة والنضارة.
         </div>
         <div class="preview-controls">
           <div class="preview-qty">
@@ -170,7 +168,9 @@
             <input type="number" id="preview-quantity" min="1" value="1" readonly>
             <button type="button" id="preview-plus">+</button>
           </div>
-          <button class="btn share" id="preview-share">📤 مشاركة</button>
+          <button class="btn share" id="preview-share">
+            <i class="fas fa-share-alt"></i> مشاركة
+          </button>
           <button class="btn" id="preview-add-to-cart">أضف للسلة</button>
         </div>
       </div>
@@ -184,7 +184,8 @@
 
   <!-- Back to Top Button -->
   <button class="back-to-top" id="back-to-top" type="button" title="العودة لأعلى الصفحة">
-    ⬆️
+    <i class="fas fa-chevron-up" aria-hidden="true"></i>
+    <span class="sr-only">العودة لأعلى</span>
   </button>
 
   <!-- Cart Sidebar Overlay -->

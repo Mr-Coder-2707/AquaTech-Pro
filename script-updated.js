@@ -380,7 +380,15 @@
         const el = document.createElement('article');
         el.className = 'product';
         el.innerHTML = `
-          <img src="${p.img}" alt="${p.name}" loading="lazy" style="width: 100%; height: 200px; object-fit: cover;">
+          <div class="product-image-container">
+            <img src="${p.img}" alt="${p.name}" loading="lazy" style="width: 100%; height: 200px; object-fit: cover;">
+            <button class="product-share-btn" data-id="${p.id}" title="مشاركة المنتج">
+              <i class="fas fa-share-alt"></i>
+            </button>
+            <button class="product-preview-btn" data-id="${p.id}" title="معاينة المنتج">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
           <div class="body">
             <h3>${p.name}</h3>
             <div class="price">${fmt(p.price)}</div>
@@ -390,8 +398,6 @@
                 <input type="number" min="1" value="1" inputmode="numeric" />
                 <button type="button" aria-label="زيادة">+</button>
               </div>
-              <button class="btn preview" data-id="${p.id}" title="معاينة المنتج">👁️</button>
-              <button class="btn share" data-id="${p.id}" title="مشاركة المنتج">📤</button>
               <button class="btn add" data-id="${p.id}">أضف للسلة</button>
             </div>
           </div>
@@ -555,12 +561,22 @@
             <h2>🔗 منتج مشارك من AquaTech Pro</h2>
             <div class="shared-product-actions">
               <button class="btn secondary" onclick="clearUrlParams(); renderProducts();">عرض جميع المنتجات</button>
-              <button class="btn share" onclick="shareProduct(PRODUCTS.find(p => p.id === '${product.id}'))">مشاركة مرة أخرى 📤</button>
+              <button class="btn share" onclick="shareProduct(PRODUCTS.find(p => p.id === '${product.id}'))">
+                <i class="fas fa-share-alt"></i> مشاركة مرة أخرى
+              </button>
             </div>
           </div>
         </div>
         <article class="product featured-product">
-          <img src="${product.img}" alt="${product.name}" loading="lazy" style="width: 100%; height: 300px; object-fit: cover;">
+          <div class="product-image-container">
+            <img src="${product.img}" alt="${product.name}" loading="lazy" style="width: 100%; height: 300px; object-fit: cover;">
+            <button class="product-share-btn" data-id="${product.id}" title="مشاركة المنتج">
+              <i class="fas fa-share-alt"></i>
+            </button>
+            <button class="product-preview-btn" data-id="${product.id}" title="معاينة المنتج">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
           <div class="body">
             <div class="product-category">${product.category}</div>
             <h3>${product.name}</h3>
@@ -597,7 +613,15 @@
         const el = document.createElement('article');
         el.className = 'product';
         el.innerHTML = `
-          <img src="${p.img}" alt="${p.name}" loading="lazy" style="width: 100%; height: 200px; object-fit: cover;">
+          <div class="product-image-container">
+            <img src="${p.img}" alt="${p.name}" loading="lazy" style="width: 100%; height: 200px; object-fit: cover;">
+            <button class="product-share-btn" data-id="${p.id}" title="مشاركة المنتج">
+              <i class="fas fa-share-alt"></i>
+            </button>
+            <button class="product-preview-btn" data-id="${p.id}" title="معاينة المنتج">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
           <div class="body">
             <h3>${p.name}</h3>
             <div class="price">${fmt(p.price)}</div>
@@ -607,8 +631,6 @@
                 <input type="number" min="1" value="1" inputmode="numeric" />
                 <button type="button" aria-label="زيادة">+</button>
               </div>
-              <button class="btn preview" data-id="${p.id}" title="معاينة المنتج">👁️</button>
-              <button class="btn share" data-id="${p.id}" title="مشاركة المنتج">📤</button>
               <button class="btn add" data-id="${p.id}">أضف للسلة</button>
             </div>
           </div>
@@ -863,6 +885,12 @@
           const qty = Math.max(1, parseInt(qtyInput.value || '1', 10));
           const existing = cart.get(id);
           cart.set(id, { product: p, qty: (existing?.qty || 0) + qty });
+          
+          // Add flying animation
+          setTimeout(() => {
+            animateProductToCart(btn, p);
+          }, 100); // Small delay to let user see the button animation first
+          
           renderCart();
           
           // Add animation effect
@@ -875,7 +903,18 @@
         });
       });
 
-      // preview handlers
+      // preview handlers - Updated to work with new preview button
+      list.querySelectorAll('.product-preview-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const product = PRODUCTS.find(x => x.id === id);
+          if (product) {
+            showProductPreview(product);
+          }
+        });
+      });
+
+      // Keep old preview handlers for compatibility (if any exist)
       list.querySelectorAll('.btn.preview').forEach(btn => {
         btn.addEventListener('click', () => {
           const id = btn.getAttribute('data-id');
@@ -886,7 +925,18 @@
         });
       });
 
-      // share handlers
+      // share handlers - Updated to work with new share button
+      list.querySelectorAll('.product-share-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.getAttribute('data-id');
+          const product = PRODUCTS.find(x => x.id === id);
+          if (product) {
+            shareProduct(product);
+          }
+        });
+      });
+
+      // Keep old share handlers for compatibility (if any exist)
       list.querySelectorAll('.btn.share').forEach(btn => {
         btn.addEventListener('click', () => {
           const id = btn.getAttribute('data-id');
@@ -896,6 +946,408 @@
           }
         });
       });
+    }
+
+    // ===============================================
+    // ADD TO CART ANIMATION FUNCTION
+    // ===============================================
+    function animateProductToCart(button, product) {
+      // Get the product image
+      const productCard = button.closest('.product');
+      const productImg = productCard.querySelector('img');
+      
+      if (!productImg) return;
+      
+      // Get positions
+      const imgRect = productImg.getBoundingClientRect();
+      const cartBtn = document.getElementById('floating-cart') || document.getElementById('navbar-cart-btn');
+      
+      if (!cartBtn) return;
+      
+      const cartRect = cartBtn.getBoundingClientRect();
+      
+      // Create suction tube
+      createSuctionTube(imgRect, cartRect);
+      
+      // Create flying product with delay to show tube first
+      setTimeout(() => {
+        createFlyingProduct(product, imgRect, cartRect);
+      }, 200);
+      
+      // Add cart pulse animation
+      setTimeout(() => {
+        if (cartBtn) {
+          cartBtn.classList.add('cart-pulse');
+          setTimeout(() => {
+            cartBtn.classList.remove('cart-pulse');
+          }, 600);
+        }
+        
+        // Add cart badge bounce animation
+        const navCartBadge = document.getElementById('nav-cart-badge');
+        const floatingCartBadge = document.getElementById('floating-cart-badge');
+        
+        if (navCartBadge) {
+          navCartBadge.classList.add('bounce');
+          setTimeout(() => {
+            navCartBadge.classList.remove('bounce');
+          }, 600);
+        }
+        
+        if (floatingCartBadge) {
+          floatingCartBadge.classList.add('bounce');
+          setTimeout(() => {
+            floatingCartBadge.classList.remove('bounce');
+          }, 600);
+        }
+      }, 700);
+    }
+
+    function createSuctionTube(startRect, endRect) {
+      const tube = document.createElement('div');
+      tube.className = 'suction-tube';
+      
+      // Calculate precise connection points
+      const startX = startRect.left + startRect.width / 2;
+      const startY = startRect.top + startRect.height / 2;
+      const endX = endRect.left + endRect.width / 2;
+      const endY = endRect.top + endRect.height / 2;
+      
+      // Calculate vector from start to end
+      const deltaX = endX - startX;
+      const deltaY = endY - startY;
+      const length = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      
+      // Calculate angle in degrees for proper tube direction
+      const angle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
+      
+      // Position the tube at start point with precise centering
+      tube.style.left = startX + 'px';
+      tube.style.top = (startY - 6) + 'px'; // Center the tube vertically
+      tube.style.width = length + 'px';
+      tube.style.setProperty('--tube-angle', angle + 'deg');
+      
+      // Add flowing particles with enhanced timing
+      const particlesContainer = document.createElement('div');
+      particlesContainer.className = 'flow-particles';
+      
+      // Create particles with natural flow pattern
+      for (let i = 0; i < 12; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.animationDelay = (i * 0.08) + 's';
+        // Add slight vertical variation for more natural flow
+        particle.style.top = (45 + Math.random() * 10) + '%';
+        particlesContainer.appendChild(particle);
+      }
+      
+      tube.appendChild(particlesContainer);
+      document.body.appendChild(tube);
+      
+      // Remove tube after complete animation cycle
+      setTimeout(() => {
+        if (tube.parentNode) {
+          tube.parentNode.removeChild(tube);
+        }
+      }, 1400);
+    }
+
+    function createFlyingProduct(product, startRect, endRect) {
+      // Create a clone of the product image for animation
+      const flyingImg = document.createElement('img');
+      flyingImg.src = product.img;
+      flyingImg.className = 'product-flying-to-cart';
+      
+      // Calculate positions
+      const startX = startRect.left + startRect.width / 2 - 30;
+      const startY = startRect.top + startRect.height / 2 - 30;
+      const endX = endRect.left + endRect.width / 2 - 30;
+      const endY = endRect.top + endRect.height / 2 - 30;
+      
+      // Set initial position
+      flyingImg.style.left = startX + 'px';
+      flyingImg.style.top = startY + 'px';
+      
+      // Calculate curved path points
+      const deltaX = endX - startX;
+      const deltaY = endY - startY;
+      
+      // Create control points for bezier curve (simulating water flow)
+      const controlOffset = Math.min(Math.abs(deltaX), Math.abs(deltaY)) * 0.5;
+      const curve20X = deltaX * 0.2 + (deltaY > 0 ? -controlOffset : controlOffset) * 0.3;
+      const curve20Y = deltaY * 0.2 - controlOffset * 0.2;
+      const curve40X = deltaX * 0.4 + (deltaY > 0 ? -controlOffset : controlOffset) * 0.6;
+      const curve40Y = deltaY * 0.4 - controlOffset * 0.4;
+      const curve60X = deltaX * 0.6 + (deltaY > 0 ? -controlOffset : controlOffset) * 0.4;
+      const curve60Y = deltaY * 0.6 - controlOffset * 0.2;
+      const curve80X = deltaX * 0.8;
+      const curve80Y = deltaY * 0.8;
+      
+      // Set CSS custom properties for curved animation
+      flyingImg.style.setProperty('--curve-x-20', curve20X + 'px');
+      flyingImg.style.setProperty('--curve-y-20', curve20Y + 'px');
+      flyingImg.style.setProperty('--curve-x-40', curve40X + 'px');
+      flyingImg.style.setProperty('--curve-y-40', curve40Y + 'px');
+      flyingImg.style.setProperty('--curve-x-60', curve60X + 'px');
+      flyingImg.style.setProperty('--curve-y-60', curve60Y + 'px');
+      flyingImg.style.setProperty('--curve-x-80', curve80X + 'px');
+      flyingImg.style.setProperty('--curve-y-80', curve80Y + 'px');
+      flyingImg.style.setProperty('--curve-x-100', deltaX + 'px');
+      flyingImg.style.setProperty('--curve-y-100', deltaY + 'px');
+      
+      // Add to document
+      document.body.appendChild(flyingImg);
+      
+      // Start animation
+      requestAnimationFrame(() => {
+        flyingImg.classList.add('fly-to-cart-curved');
+      });
+      
+      // Enhanced cart entry effect - make product actually enter the cart
+      setTimeout(() => {
+        // Stage 1: Product reaches cart entrance
+        flyingImg.style.transition = 'all 0.2s ease-out';
+        flyingImg.style.transform = 'scale(0.3) rotate(360deg)';
+        flyingImg.style.opacity = '0.8';
+        
+        // Stage 2: Product enters cart opening
+        setTimeout(() => {
+          flyingImg.style.transition = 'all 0.2s ease-in';
+          flyingImg.style.transform = 'scale(0.15) rotate(540deg)';
+          flyingImg.style.opacity = '0.4';
+          flyingImg.style.filter = 'blur(1px)';
+          
+          // Visual feedback on cart icon - cart opens to receive product
+          const cartBtn = document.getElementById('floating-cart') || document.getElementById('navbar-cart-btn');
+          const cartIcon = cartBtn?.querySelector('i');
+          
+          if (cartIcon) {
+            // Cart "opens" to receive the product
+            cartIcon.style.transform = 'scale(1.3)';
+            cartIcon.style.color = '#10b981';
+            cartIcon.style.filter = 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.6))';
+          }
+          
+          // Stage 3: Final disappearance inside cart
+          setTimeout(() => {
+            flyingImg.style.transition = 'all 0.15s ease-in';
+            flyingImg.style.transform = 'scale(0.05) rotate(720deg)';
+            flyingImg.style.opacity = '0';
+            flyingImg.style.filter = 'blur(3px)';
+            
+            if (cartIcon) {
+              // Cart "closes" after swallowing the product
+              cartIcon.style.transform = 'scale(0.85)';
+            }
+            
+            // Final cart satisfaction effect
+            setTimeout(() => {
+              if (cartIcon) {
+                cartIcon.style.transform = 'scale(1.1)';
+                cartIcon.style.color = '#059669';
+              }
+              
+              // Add cart shake effect to show the product landed inside
+              if (cartBtn) {
+                cartBtn.style.animation = 'cartShake 0.4s ease-in-out';
+                setTimeout(() => {
+                  cartBtn.style.animation = '';
+                  
+                  // Return cart to normal state
+                  if (cartIcon) {
+                    cartIcon.style.transform = 'scale(1)';
+                    cartIcon.style.color = '';
+                    cartIcon.style.filter = '';
+                  }
+                }, 400);
+              }
+            }, 100);
+          }, 150);
+        }, 200);
+      }, 700);
+      
+      // Remove the flying image after complete animation
+      setTimeout(() => {
+        if (flyingImg.parentNode) {
+          flyingImg.parentNode.removeChild(flyingImg);
+        }
+      }, 1200);
+    }
+
+    // Animation function for preview modal
+    function animateProductToCartFromPreview(product) {
+      // Get the preview image
+      const previewImg = document.getElementById('preview-img');
+      
+      if (!previewImg) return;
+      
+      // Get positions
+      const imgRect = previewImg.getBoundingClientRect();
+      const cartBtn = document.getElementById('floating-cart') || document.getElementById('navbar-cart-btn');
+      
+      if (!cartBtn) return;
+      
+      const cartRect = cartBtn.getBoundingClientRect();
+      
+      // Create suction tube from preview
+      createSuctionTube(imgRect, cartRect);
+      
+      // Create flying product with delay
+      setTimeout(() => {
+        createFlyingProductFromPreview(product, imgRect, cartRect);
+      }, 200);
+      
+      // Add cart effects with delay
+      setTimeout(() => {
+        if (cartBtn) {
+          cartBtn.classList.add('cart-pulse');
+          setTimeout(() => {
+            cartBtn.classList.remove('cart-pulse');
+          }, 600);
+        }
+        
+        // Add cart badge bounce animation
+        const navCartBadge = document.getElementById('nav-cart-badge');
+        const floatingCartBadge = document.getElementById('floating-cart-badge');
+        
+        if (navCartBadge) {
+          navCartBadge.classList.add('bounce');
+          setTimeout(() => {
+            navCartBadge.classList.remove('bounce');
+          }, 600);
+        }
+        
+        if (floatingCartBadge) {
+          floatingCartBadge.classList.add('bounce');
+          setTimeout(() => {
+            floatingCartBadge.classList.remove('bounce');
+          }, 600);
+        }
+      }, 700);
+    }
+
+    function createFlyingProductFromPreview(product, startRect, endRect) {
+      // Create a clone of the product image for animation
+      const flyingImg = document.createElement('img');
+      flyingImg.src = product.img;
+      flyingImg.className = 'product-flying-to-cart';
+      
+      // Calculate positions
+      const startX = startRect.left + startRect.width / 2 - 40;
+      const startY = startRect.top + startRect.height / 2 - 40;
+      const endX = endRect.left + endRect.width / 2 - 40;
+      const endY = endRect.top + endRect.height / 2 - 40;
+      
+      // Set initial position
+      flyingImg.style.left = startX + 'px';
+      flyingImg.style.top = startY + 'px';
+      flyingImg.style.width = '80px';
+      flyingImg.style.height = '80px';
+      
+      // Calculate curved path points
+      const deltaX = endX - startX;
+      const deltaY = endY - startY;
+      
+      // Create control points for bezier curve
+      const controlOffset = Math.min(Math.abs(deltaX), Math.abs(deltaY)) * 0.5;
+      const curve20X = deltaX * 0.2 + (deltaY > 0 ? -controlOffset : controlOffset) * 0.3;
+      const curve20Y = deltaY * 0.2 - controlOffset * 0.2;
+      const curve40X = deltaX * 0.4 + (deltaY > 0 ? -controlOffset : controlOffset) * 0.6;
+      const curve40Y = deltaY * 0.4 - controlOffset * 0.4;
+      const curve60X = deltaX * 0.6 + (deltaY > 0 ? -controlOffset : controlOffset) * 0.4;
+      const curve60Y = deltaY * 0.6 - controlOffset * 0.2;
+      const curve80X = deltaX * 0.8;
+      const curve80Y = deltaY * 0.8;
+      
+      // Set CSS custom properties for curved animation
+      flyingImg.style.setProperty('--curve-x-20', curve20X + 'px');
+      flyingImg.style.setProperty('--curve-y-20', curve20Y + 'px');
+      flyingImg.style.setProperty('--curve-x-40', curve40X + 'px');
+      flyingImg.style.setProperty('--curve-y-40', curve40Y + 'px');
+      flyingImg.style.setProperty('--curve-x-60', curve60X + 'px');
+      flyingImg.style.setProperty('--curve-y-60', curve60Y + 'px');
+      flyingImg.style.setProperty('--curve-x-80', curve80X + 'px');
+      flyingImg.style.setProperty('--curve-y-80', curve80Y + 'px');
+      flyingImg.style.setProperty('--curve-x-100', deltaX + 'px');
+      flyingImg.style.setProperty('--curve-y-100', deltaY + 'px');
+      
+      // Add to document
+      document.body.appendChild(flyingImg);
+      
+      // Start curved animation
+      requestAnimationFrame(() => {
+        flyingImg.classList.add('fly-to-cart-curved');
+      });
+      
+      // Enhanced cart entry effect from preview - make product actually enter the cart
+      setTimeout(() => {
+        // Stage 1: Product reaches cart entrance
+        flyingImg.style.transition = 'all 0.2s ease-out';
+        flyingImg.style.transform = 'scale(0.4) rotate(360deg)';
+        flyingImg.style.opacity = '0.8';
+        
+        // Stage 2: Product enters cart opening
+        setTimeout(() => {
+          flyingImg.style.transition = 'all 0.2s ease-in';
+          flyingImg.style.transform = 'scale(0.2) rotate(540deg)';
+          flyingImg.style.opacity = '0.4';
+          flyingImg.style.filter = 'blur(1px)';
+          
+          // Visual feedback on cart icon - cart opens to receive product
+          const cartBtn = document.getElementById('floating-cart') || document.getElementById('navbar-cart-btn');
+          const cartIcon = cartBtn?.querySelector('i');
+          
+          if (cartIcon) {
+            // Cart "opens" to receive the product
+            cartIcon.style.transform = 'scale(1.3)';
+            cartIcon.style.color = '#10b981';
+            cartIcon.style.filter = 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.6))';
+          }
+          
+          // Stage 3: Final disappearance inside cart
+          setTimeout(() => {
+            flyingImg.style.transition = 'all 0.15s ease-in';
+            flyingImg.style.transform = 'scale(0.05) rotate(720deg)';
+            flyingImg.style.opacity = '0';
+            flyingImg.style.filter = 'blur(3px)';
+            
+            if (cartIcon) {
+              // Cart "closes" after swallowing the product
+              cartIcon.style.transform = 'scale(0.85)';
+            }
+            
+            // Final cart satisfaction effect
+            setTimeout(() => {
+              if (cartIcon) {
+                cartIcon.style.transform = 'scale(1.1)';
+                cartIcon.style.color = '#059669';
+              }
+              
+              // Add cart shake effect to show the product landed inside
+              if (cartBtn) {
+                cartBtn.style.animation = 'cartShake 0.4s ease-in-out';
+                setTimeout(() => {
+                  cartBtn.style.animation = '';
+                  
+                  // Return cart to normal state
+                  if (cartIcon) {
+                    cartIcon.style.transform = 'scale(1)';
+                    cartIcon.style.color = '';
+                    cartIcon.style.filter = '';
+                  }
+                }, 400);
+              }
+            }, 100);
+          }, 150);
+        }, 200);
+      }, 700);
+      
+      // Remove the flying image after complete animation
+      setTimeout(() => {
+        if (flyingImg.parentNode) {
+          flyingImg.parentNode.removeChild(flyingImg);
+        }
+      }, 1200);
     }
 
     function validateForm(isSidebar=true) { // Always use sidebar validation since main cart removed
@@ -1342,6 +1794,11 @@
         qty: (existing?.qty || 0) + qty 
       });
       
+      // Add flying animation from preview modal
+      setTimeout(() => {
+        animateProductToCartFromPreview(currentPreviewProduct);
+      }, 150); // Slightly longer delay for modal
+      
       renderCart(); // This will automatically save the cart
       hideProductPreview();
       
@@ -1695,3 +2152,49 @@
       // Initial check for scroll position
       handleScroll();
     });
+
+    // Function to show visual confirmation that product entered cart
+    function showProductEnteredCart() {
+      const cartBtn = document.getElementById('floating-cart') || document.getElementById('navbar-cart-btn');
+      if (!cartBtn) return;
+      
+      // Create success indicator
+      const indicator = document.createElement('div');
+      indicator.className = 'product-entry-indicator';
+      indicator.innerHTML = '✅';
+      indicator.style.cssText = `
+        position: fixed;
+        z-index: 10000;
+        font-size: 24px;
+        color: #10b981;
+        pointer-events: none;
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.3s ease-out;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      `;
+      
+      // Position near cart
+      const cartRect = cartBtn.getBoundingClientRect();
+      indicator.style.left = (cartRect.right + 10) + 'px';
+      indicator.style.top = (cartRect.top - 5) + 'px';
+      
+      document.body.appendChild(indicator);
+      
+      // Animate in
+      setTimeout(() => {
+        indicator.style.opacity = '1';
+        indicator.style.transform = 'scale(1)';
+      }, 10);
+      
+      // Animate out and remove
+      setTimeout(() => {
+        indicator.style.opacity = '0';
+        indicator.style.transform = 'scale(0.5) translateY(-20px)';
+        setTimeout(() => {
+          if (indicator.parentNode) {
+            indicator.parentNode.removeChild(indicator);
+          }
+        }, 300);
+      }, 1000);
+    }
